@@ -1,0 +1,112 @@
+// ==/UserScript==// ==UserScript==
+// @name        google search button adder
+// @namespace   Rick
+// @description add quizlet button
+// @license     GNU
+// @require http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js
+// @include     http://www.google.*
+// @include     https://www.google.*
+// @include     http://webcache.googleusercontent.*
+// @include     https://webcache.googleusercontent.*
+// /homepageURL http://userscripts.org/scripts/show/156216
+// /updateURL https://userscripts.org/scripts/source/156216.meta.js
+// @require https://gist.github.com/raw/2625891/waitForKeyElements.js
+// @version   2.018.0318
+// @grant GM_addStyle
+// @grant GM_log
+// @run-at document-idle
+// ==/UserScript==
+
+/*
+var script = document.createElement('script');
+script.src = '//code.jquery.com/jquery-1.11.0.min.js';
+script.type = 'text/javascript';
+document.getElementsByTagName('head')[0].appendChild(script);
+
+waitForKeyElements(document.querySelector("#hdtb-msb-vis"), loadTheFunction);
+
+$(document).ready(function(){setTimeout(loadTheFunction())
+},10000);
+
+
+this.$ = this.jQuery = jQuery.noConflict(true);
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}*/
+function loadTheFunction(){
+    const quizlet = document.createElement("p");
+    const kutip = document.createElement("p");
+
+    const searchform = document.querySelector("#searchform");
+    const googleQuery = searchform.querySelector("div div div div input");
+    const button = searchform.querySelector("button");
+    var parentElement = document.querySelector("#cst");
+    var body = document.querySelector("body");
+
+    //variable for quizlet
+    quizlet.textContent="quizlet";
+    quizlet.fontsize="44px";
+    quizlet.setAttribute("class", "GM quizlet");
+    quizlet.setAttribute("role", "button");
+    quizlet.style.position = "absolute";
+    quizlet.style.left ='600px';
+    quizlet.style.top ='75px';
+    quizlet.style.zIndex= "1000000";
+
+    //will and "quizlet.com" into the search query and refresh the search
+    quizlet.addEventListener('click', function(){
+        googleQuery.value += " site:.quizlet.com ";
+        button.click();
+    })
+
+
+    //variable for quote
+    kutip.textContent="quote";
+    kutip.fontsize="44px";
+    kutip.setAttribute("class", "GM quizlet");
+    kutip.setAttribute("role", "button");
+    kutip.style.position = "absolute";
+    kutip.style.left ='600px';
+    kutip.style.top ='90px';
+    kutip.style.zIndex= "1000000";
+
+    //determine the number of word that quoted
+    var numberOfWords=7;
+
+    //will add quote on a certain number of words start from  the first
+    kutip.addEventListener('click', function(){
+        var res = googleQuery.value.split(" ");
+        googleQuery.value="";
+        for(var i=0; i<res.length;i++){
+            if(numberOfWords>res.length){numberOfWords= res.length}
+            if(i==0){googleQuery.value += '"'}
+            if(i==5){googleQuery.value += res[i] +'" ' }
+            else{googleQuery.value += res[i]+' ';}
+            button.click();
+        }
+    })
+
+    // add the new button to the layout
+    if(parentElement!=null||0){
+        parentElement.appendChild(quizlet);
+        parentElement.appendChild(kutip);
+        //(document.head || document.parentElement).insertAdjacentHTML('afterstart', quizlet);
+    }
+
+}
+
+
+loadTheFunction();
+
+
+
+
+
+
+
+(function() {
+    'use strict';
+
+    // Your code here...
+})();
