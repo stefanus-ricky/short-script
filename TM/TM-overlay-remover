@@ -7,10 +7,10 @@
 // @include     https://quizlet.com*
 // @include     http://webcache.googleusercontent.*
 // @include     https://webcache.googleusercontent.*
-// /homepageURL http://userscripts.org/scripts/show/156216
-// /updateURL https://userscripts.org/scripts/source/156216.meta.js
+// /homepageURL http://userscripts.org/scripts/show/
+// /updateURL https://userscripts.org/scripts/source/
 // @require https://gist.github.com/raw/2625891/waitForKeyElements.js
-// @version   2.018.0318
+// @version   1
 // @grant GM_addStyle
 // @grant GM_log
 // @run-at document-idle
