@@ -1,0 +1,2 @@
+# short-script
+assorted script
