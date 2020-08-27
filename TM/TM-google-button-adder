@@ -11,7 +11,7 @@
 // /homepageURL http://userscripts.org/scripts/show/156216
 // /updateURL https://userscripts.org/scripts/source/156216.meta.js
 // @require https://gist.github.com/raw/2625891/waitForKeyElements.js
-// @version   2.018.0318
+// @version   1.0.0
 // @grant GM_addStyle
 // @grant GM_log
 // @run-at document-idle
