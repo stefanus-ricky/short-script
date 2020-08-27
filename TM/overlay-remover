@@ -1,0 +1,51 @@
+// ==/UserScript==// ==UserScript==
+// @name        overlay remover
+// @namespace   Rick
+// @description remove annoying overlay
+// @license     GNU
+// @require http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js
+// @include     https://quizlet.com*
+// @include     http://webcache.googleusercontent.*
+// @include     https://webcache.googleusercontent.*
+// /homepageURL http://userscripts.org/scripts/show/156216
+// /updateURL https://userscripts.org/scripts/source/156216.meta.js
+// @require https://gist.github.com/raw/2625891/waitForKeyElements.js
+// @version   2.018.0318
+// @grant GM_addStyle
+// @grant GM_log
+// @run-at document-idle
+// ==/UserScript==
+
+Element.prototype.remove = function() {
+    this.parentElement.removeChild(this);
+}
+NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+    for(var i = this.length - 1; i >= 0; i--) {
+        if(this[i] && this[i].parentElement) {
+            this[i].parentElement.removeChild(this[i]);
+        }
+    }
+}
+
+function loadTheFunction(){
+    const spamNode = document.getElementsByClassName("SignupWallInline");
+    spamNode.remove();
+    /*
+    var a = document.getElementsByClassName("SetPage-termsList"); //parent directory
+    var b= a[0].childNodes;
+    var c=b.length;
+
+    for(var i=1; i<c;i++){
+        //adding atribute that shows the node
+        var d= b[i].childNodes;
+        //d.setAttribute("class","SetPageTerm has-definitionText has-threeActions is-showing");
+    }*/
+}
+
+loadTheFunction();
+
+(function() {
+    'use strict';
+
+    // Your code here...
+})();
